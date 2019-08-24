@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
         } else if (id == R.id.nav_register) {
+            startActivity(new Intent(MainActivity.this, RegisterActivity.class));
 
         } else if (id == R.id.nav_tools) {
 
