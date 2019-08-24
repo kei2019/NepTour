@@ -11,13 +11,13 @@ def get_index_from_title(VDC_name):
 df=pd.read_csv("vdc.csv")
 
 #print(df.head())
-features=['Region', 'Geographical Region']
+features=['Region', 'Geographical Region', 'District', 'Zone']
 
 for feature in features:
     df[feature]=df[feature].fillna(' ')
 
 def combine_features(row):
-    return row['Region']+" "+row['Geographical Region']
+    return row['Region']+" "+row['Geographical Region']+" "+row['District']+" "+row['Zone']
 
 df["combine_features"]=df.apply(combine_features, axis=1)
 #print (df["combine_features"].head())
@@ -32,5 +32,8 @@ liked_place="Ghandruk"
 
 place_index=get_index_from_title(liked_place)
 similar_places=list(enumerate(cos_sim[place_index]))
+
+sorted_similar_places=sorted(similar_places, key=lambda x:x[1], reverse=True)
+
 
 
