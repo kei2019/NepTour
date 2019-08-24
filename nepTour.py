@@ -19,3 +19,15 @@ for feature in features:
 def combine_features(row):
     return row['Region']+" "+row['Geographical Region']
 
+df["combine_features"]=df.apply(combine_features, axis=1)
+#print (df["combine_features"].head())
+
+count=CountVectorizer()
+count_matrix=count.fit_transform(df[combine_features])
+#
+#
+#
+cos_sim=cosine_similarity(count_matrix)
+liked_place="Ghandruk"
+
+
