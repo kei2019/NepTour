@@ -29,7 +29,7 @@ count_matrix=cv.fit_transform(df["combine_features"])
 #
 
 cos_sim=cosine_similarity(count_matrix)
-liked_place="itahari"
+liked_place="Thamel"
 
 place_index=get_index_from_title(liked_place)
 similar_places=list(enumerate(cos_sim[place_index]))
@@ -41,7 +41,7 @@ i=0
 for place in sorted_similar_places:
     print(get_title_from_index(place[0]))
     i=i+1
-    if i>20:
+    if i>5:
         break
 
 
