@@ -3,9 +3,11 @@ nav {
   height: 80px;
 }
 
-body {
+.wrapper {
   display: block;
+  margin: 1.2rem;
 }
+
 .img-carousel{
   display: block;
   max-width: 100%;
@@ -19,9 +21,16 @@ body {
   width: 18rem;
 }
 
-#carousel-container {
-  display: block;
+.posts {
+  display: grid;
+  grid-gap: 8px;
+  padding: 16px;
+  grid-auto-rows: 1fr;
 }
 
-#register-form {
+.form-select-btn {
+  display: inline-block;
+  border: none;
+  width: 54px;
+  background: none;
 }
