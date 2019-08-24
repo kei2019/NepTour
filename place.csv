@@ -1,0 +1,73 @@
+index,Zone,District,place_name,place_type
+0,Koshi,Sunsari,Itahari,city
+1,Koshi,Sunsari,Dharan,city
+2,Koshi,Sunsari,Bhedetar,nature
+3,Koshi,Sunsari,Barahachetra,religious
+4,Koshi,Sankhuwashaba,Makalu barun national park,wildlife
+5,Koshi,Sankhuwashaba,Sabhapokhari,adventure
+6,Koshi,Sankhuwashaba,Mt. Makalu,adventure
+7,Koshi,Sankhuwashaba,Manakamana temple,religious
+8,Koshi,Sankhuwashaba,kimathanka village,culture
+9,Koshi,Sankhuwashaba,kimathanka,adventure
+10,Koshi,Bhojpur,Bokhim,culture
+11,Koshi,Bhojpur,Bhaisipankha,culture
+12,Koshi,Morang,Biratnagar,city
+13,Koshi,Sunsari,Koshi tappu wild life reservation,wildlife
+14,Koshi,Dhankuta,Dhankuta ,city
+15,Koshi,Dhankuta,Hile,city
+16,Koshi,Dhankuta,Pakhribas,nature
+17,Koshi,Terathum,Basantapur,adventure
+18,Koshi,Terathum,Hyatung falls,nature
+19,Mechi,Taplejung,Pathibhara,religious
+20,Mechi,Taplejung,Kanchenjunga conservation area ,wildlife
+21,Mechi,Taplejung,Olangchung gola,adventure
+22,Mechi,Taplejung,Olangchung gola forest,nature
+23,Mechi,Taplejung,Mt. Kanchenjunga,nature
+24,Mechi,Taplejung,Mt. Kanchenjunga base camp,adventure
+25,Mechi,Ilam,Kanyam,nature
+26,Mechi,Ilam,Fikkal,nature
+27,Mechi,Ilam,Antu ,nature
+28,Mechi,Jhapa,Birtamod,city
+29,Mechi,Jhapa,Barne Team farm,nature
+30,Mechi,Panchthar,Timbung pokhari,nature
+31,Mechi,Panchthar,Fidim,city
+32,Sagarmatha,Solukhumbu,Mt. Everest,nature
+33,Sagarmatha,Solukhumbu,Mt. Everest base camp,adventure
+34,Sagarmatha,Solukhumbu,Sagarmatha national park,wildlife
+35,Sagarmatha,Solukhumbu,Namche Bazar,city
+36,Sagarmatha,Khotang,Halesi,religious
+37,Bagmati,Kathmandu,Pasupati Temple,religious
+38,Bagmati,Kathmandu,Basantapur durbar square,Heritage
+39,Bagmati,Kathmandu,Swayambhunath Temple,religious
+40,Bagmati,Kathmandu,Kirtipur,city
+41,Bagmati,Kathmandu,Thamel,city
+42,Bagmati,Kathmandu,Ratnapark,nature
+43,Bagmati,Bhaktapur,Bhaktapur durbar square,Heritage
+44,Bagmati,Bhaktapur,Changunarayan hill,Heritage
+45,Bagmati,Bhaktapur,Changunarayan,religious
+46,Bagmati,Bhaktapur,Pilot baba,religious
+47,Bagmati,Lalitpur,Patan durbar square,Heritage
+48,Bagmati,Lalitpur,Patan Zoo,wildlife
+49,Bagmati,Lalitpur,Mahaboudha temple,religious
+50,Bagmati,Rasuwa,Gosaikunda lake,religious
+51,Bagmati,Rasuwa,Gosaikunda ,nature
+52,Bagmati,Rasuwa,Langtang national park,wildlife
+53,Bagmati,Rasuwa,Langtang ,nature
+54,Janakpur,Dhanusha,Janaki mandir,religious
+55,Janakpur,Dhanusha,janakpur,culture
+56,Narayani,Chitwan,Chitwan national park,wildlife
+57,Narayani,Chitwan,Sauraha,adventure
+58,Dhawalagiri,Mustang,muktinath temple,religious
+59,Dhawalagiri,Mustang,jomsom,city
+60,Gandaki,Manang,Gangapurna lake,nature
+61,Lumbini,Kapilvastu,lumbini,religious
+62,Lumbini,Palpa,Tansen,city
+63,Gandaki,Kaski,Pokhara bazar,city
+64,Gandaki,Kaski,Pokhara,nature
+65,Gandaki,Kaski,Sarangkot,adventure
+66,Gandaki,Kaski,Lumle,nature
+67,Gandaki,Kaski,Ghandruk,nature
+68,Gandaki,Kaski,Ghandruk village,culture
+69,Karnali,Dolpa,Phoksundo lake,nature
+70,Karnali,Dolpa,Se phoksundo national park ,wildlife
+71,Karnali,Dolpa,Dunai,culture
