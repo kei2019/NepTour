@@ -3,31 +3,56 @@ from django.contrib.auth.models import User, Group
 
 
 # Create your models here.
+
+
+
+
+Choice = (
+    ('Tourist', "Tourist"),
+    ('Photographer', 'Photographer'),
+    
+
+
+)
 class Photographer(models.Model):
-    username = models.OneToOneField(User,on_delete = models.CASCADE)
+    # username = models.OneToOneField(User,on_delete = models.CASCADE)
     name = models.CharField(max_length = 150)
     # Age = models.IntegerField()
     address = models.CharField(max_length = 160)
     # language = models.CharField(max_length = 200)
     email = models.EmailField()
     contact = models.IntegerField()
-    pimage = models.FileField(upload_to = 'photographer')
+    choice = models.CharField(max_length = 100,choices = Choice)
+    pimage = models.FileField(upload_to = 'photographer',blank = True)
+    password = models.TextField(max_length = 20)
+    
 
-    # def save(self, *args, **kwargs):
-    #     group, created = Group.objects.get_or_create(name='photographer')
-    #     self.user.groups.add(group)
-    #     super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        group, created = Group.objects.get_or_create(name='photographer')
+        self.user.groups.add(group)
+        super().save(*args, **kwargs)
 
 
     def __str__(self):
         return self.name
 
 
+Choice1 = (
+    ('Tourist', "Tourist"),
+    ('Photographer', 'Photographer'),
+    
+
+
+)
+
+
 class Tourist(models.Model):
-    username = models.OneToOneField(User,on_delete = models.CASCADE)
+    # username = models.OneToOneField(User,on_delete = models.CASCADE)
     name = models.CharField(max_length = 150)
     email = models.EmailField(max_length = 20)
     country = models.CharField(max_length = 10)
+    choice = models.CharField(max_length = 100,null = True,choices = Choice)
+
     # dob = models.CharField(max_length = 20)
     pimage = models.FileField(upload_to = 'photographer')
 
@@ -41,11 +66,11 @@ class Tourist(models.Model):
         return self.name
 
 
-class Photo(models.Model):
-    photographer = models.ForeignKey(Photographer,on_delete = models.CASCADE)
+# class Photo(models.Model):
+#     photographer = models.ForeignKey(Photographer,on_delete = models.CASCADE)
 
-    def __str__(self):
-        return self.photographer.name
+#     def __str__(self):
+#         return self.photographer.name
 
 
 
