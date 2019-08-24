@@ -1,0 +1,27 @@
+
+nav {
+  height: 80px;
+}
+
+body {
+  display: block;
+}
+.img-carousel{
+  display: block;
+  max-width: 100%;
+  height: 35rem;
+}
+
+.image-fluid {
+  display: block;
+  max-width: 100%;
+  height: 24rem;
+  width: 18rem;
+}
+
+#carousel-container {
+  display: block;
+}
+
+#register-form {
+}
