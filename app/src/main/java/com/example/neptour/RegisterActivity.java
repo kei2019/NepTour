@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     String dateFormat = "dd.MM.yyyy";
     DatePickerDialog.OnDateSetListener date;
     SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.ENGLISH);
-    public static final String URL_REGISTER = "http://10.0.2.2/app/main/register.php";
+
 
 
     @Override
