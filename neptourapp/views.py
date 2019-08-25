@@ -45,9 +45,9 @@ class RecommendationView(APIView):
         liked_place = request.GET["liked_place"]
         flag = nepTour.look_for(liked_place)
         if flag == True:
-            return Response({"recommendation": nepTour.get_recommendation(liked_place, 20)})
+            return Response({"recommendation": nepTour.get_recommended_data(liked_place, 10)})
         else:
-            return "Error"
+            return Response({"data": "Record Not Found"})
 
 
 class FetchAllView(APIView):
