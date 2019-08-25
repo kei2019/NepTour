@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         webView = findViewById(R.id.webView);
-        webView.loadUrl("http://192.168.100.53:8000/registerme");
+        webView.loadUrl(Links.URL);
         webView.getSettings().setJavaScriptEnabled(true);
 
         webView.setWebViewClient(new WebViewClient());
