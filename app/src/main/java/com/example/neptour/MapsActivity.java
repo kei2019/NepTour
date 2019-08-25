@@ -1,5 +1,6 @@
 package com.example.neptour;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
@@ -47,6 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private EditText searchPlace;
     private Button searchBtn;
+    private ProgressDialog progressDialog;
 
     private static final float DEFAULT_ZOOM = 8f;
 
@@ -62,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         searchPlace = findViewById(R.id.search_place);
         searchBtn = findViewById(R.id.search_button);
+        progressDialog = new ProgressDialog(this);
 
 
 
@@ -70,23 +73,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 final String placeValue = searchPlace.getText().toString();
 //                new HttpAsyncTask().execute("http://192.168.100.66/location");
+                recommendedPlace(placeValue);
+
             }
         });
 
     }
 
-    public void getJsonOutput() {
-        Toast.makeText(this, "Accessing : " + Links.map_url, Toast.LENGTH_SHORT).show();
-        JsonObjectRequest locationRequest = new JsonObjectRequest(Request.Method.GET, Links.map_url, null, new Response.Listener<JSONObject>() {
+    private void recommendedPlace(String placeValue) {
+        mMap.clear();
+        progressDialog.show();
+        progressDialog.setMessage("Filtering places similar to " + placeValue);
+
+        JsonObjectRequest locationRequest = new JsonObjectRequest(Request.Method.GET, Links.recommendation_url  + placeValue, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
-//                hidePDialog();
+                progressDialog.dismiss();
 
                 try {
+
 //                    JSONObject jsonObject = new JSONObject(response);
-                    if (response.optJSONArray("locations") != null) {
-                        JSONArray locations = response.getJSONArray("locations");
+                    if (response.optJSONArray("recommendation") != null) {
+                        JSONArray locations = response.getJSONArray("recommendation");
 
                         Log.d(TAG,"Locations: " + locations.length());
 
@@ -122,6 +131,84 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                            JSONObject photoUrl = book.getJSONObject("photo_url");
 
 
+//                            String photoSrc = photoUrl.getString("src");
+//                            String photoAlt = photoUrl.getString("alt");
+                            // use extracted values in your Book object
+                        }
+                    }
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+
+                    Log.d(TAG, e.toString());
+                }
+
+                // notifying list adapter about data changes
+                // so that it renders the list view with updated data
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Log.d(TAG, "Error: " + error.getMessage());
+//                hidePDialog();
+                Toast.makeText(MapsActivity.this, "Error fetching API", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(locationRequest);
+
+    }
+
+    public void getJsonOutput() {
+        Toast.makeText(this, "Accessing : " + Links.map_url, Toast.LENGTH_SHORT).show();
+        JsonObjectRequest locationRequest = new JsonObjectRequest(Request.Method.GET, Links.map_url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+//                hidePDialog();
+
+                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+                    if (response.optJSONArray("locations") != null) {
+                        JSONArray locations = response.getJSONArray("locations");
+
+                        Log.d(TAG,"Locations: " + locations.length());
+
+                        for (int i = 0; i < locations.length(); i++) {
+                            JSONObject location = locations.getJSONObject(i);
+
+                            String zone = location.getString("zone");
+                            String placeType = location.getString("place_type");
+                            String placeName = location.getString("place_name");
+                            Log.d(TAG, placeName);
+                            String lat = location.getString("lat");
+                            String lng = location.getString("lng");
+
+                            if (!lat.equals("") && !lng.equals("")) {
+                                double latitude = Double.parseDouble(location.getString("lat"));
+                                double longitude = Double.parseDouble(location.getString("lng"));
+                                Log.d(TAG, "zone: " + zone);
+
+                                Log.d(TAG, "location: " + location.toString());
+
+
+                                MarkerOptions markerOptions = new MarkerOptions();
+                                LatLng latLng;
+                                latLng = new LatLng(latitude, longitude);
+                                markerOptions.title(placeName);
+                                markerOptions.position(latLng);
+                                markerOptions.snippet(zone + "Place Type: " + placeType);
+                                mMap.addMarker(markerOptions);
+                            }
+
+//
+//                             next K,V pair consist of JSONObject photo_url
+//                            JSONObject photoUrl = book.getJSONObject("photo_url");
+//
+//
 //                            String photoSrc = photoUrl.getString("src");
 //                            String photoAlt = photoUrl.getString("alt");
                             // use extracted values in your Book object
