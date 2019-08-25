@@ -54,7 +54,7 @@
 
                             <h5 class="card-title">Title:{{ post.title }}</a></h5>
                             <h5 class="card-title">Place:{{ post.place }}</h5>
-                            <h5 class="card-title"><strong>Photographer:{{ post.photographer }}</strong></h5>
+                            <h5 class="card-title"><strong><a href= "{% url 'neptourapp:profile' %}">Photographer:{{ post.photographer }}</strong></a></h5>
                             <p class="card-text">{{ post.description}}</p>
                         </div>
 

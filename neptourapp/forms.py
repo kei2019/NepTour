@@ -25,7 +25,7 @@ class Form(forms.ModelForm):
         model = Photographer
         fields = ['name','address','email','contact','pimage','choice','password']
 
-    
+
     # def clean_email(self):
     #     email = self.cleaned_data.get('email')
     #     email = User.objects.filter(email=email)
@@ -55,3 +55,5 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['photographer','description','title','image','place']
 
+class SearchForm(forms.Form):
+    title = forms.CharField(widget=forms.TextInput())
