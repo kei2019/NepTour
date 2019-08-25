@@ -29,7 +29,7 @@ count_matrix=cv.fit_transform(df["combine_features"])
 #
 
 cos_sim=cosine_similarity(count_matrix)
-liked_place="Barne Team farm"
+liked_place="Barne Tea farm"
 
 place_index=get_index_from_title(liked_place)
 similar_places=list(enumerate(cos_sim[place_index]))
