@@ -13,9 +13,12 @@ urlpatterns = [
          name='apiretrievedestroydelete'),
     path('registerme/', Registration.as_view(), name='registration'),
     path("login/", LoginView.as_view(), name='login'),
+    path('add/post/',AddPost.as_view(),name = 'addpost'),
+    path('profile/', ProfileView.as_view(),name = 'profile'),
     # path("login-in/", views.Loginview, name='login'),
 
 
 
 
 ]
+

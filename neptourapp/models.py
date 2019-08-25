@@ -27,10 +27,10 @@ class Photographer(models.Model):
     password = models.TextField(max_length = 20)
     
 
-    def save(self, *args, **kwargs):
-        group, created = Group.objects.get_or_create(name='photographer')
-        self.user.groups.add(group)
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     group, created = Group.objects.get_or_create(name='photographer')
+    #     self.user.groups.add(group)
+    #     super().save(*args, **kwargs)
 
 
     def __str__(self):
@@ -98,11 +98,12 @@ class Post_Type(models.Model):
 
 
 class Post(models.Model):
-    photographer_name = models.ForeignKey(Photographer,on_delete = models.CASCADE)
-    description = models.TextField(max_length=500)
-    title = models.TextField(max_length=200)
+    # photographer_name = models.ForeignKey(Photographer,on_delete = models.CASCADE,null = True,blank = True)
+    photographer = models.TextField(max_length = 30)
+    description = models.CharField(max_length=500)
+    title = models.CharField(max_length=200)
     image = models.FileField(upload_to='post')
-    place = models.TextField(max_length = 30)
+    place = models.CharField(max_length = 30)
 
     def __str__(self):
         return self.title

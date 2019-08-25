@@ -14,7 +14,7 @@
         <div id="showCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="img/lake.jpeg" alt="" class="d-block w-100 img-carousel">
+                    <img src="{% static 'img/lake.jpeg' %}" alt="" class="d-block w-100 img-carousel">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Pokhara</h5>
                         <p>Place of Heaven</p>
@@ -26,6 +26,9 @@
                 <div class="carousel-item ">
                     <img src="{% static 'img/elephant.jpeg' %}" alt="" class="d-block w-100 img-carousel">
                 </div>
+                 {% comment %} <div class="carousel-item ">
+                    <img src="{% static 'img/Rt.jpeg' %}" alt="" class="d-block w-100 img-carousel">
+                </div> {% endcomment %}
 
                 <!-- <a class="carousel-control-prev" href="#showCarousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -40,19 +43,26 @@
 
 
     <div class="wrapper">
-        <div class="posts">
+        <div class="#">
             <div class="row">
+                {% for post in posts %}
+
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="{% static 'img/village.jpg' %}" alt="" class="card-img-top">
+                        <img src="{{ post.image.url }}" alt="" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title">Taplejung</h5>
-                            <p class="card-text">Place Description Here...</p>
+
+                            <h5 class="card-title">Title:{{ post.title }}</a></h5>
+                            <h5 class="card-title">Place:{{ post.place }}</h5>
+                            <h5 class="card-title"><strong>Photographer:{{ post.photographer }}</strong></h5>
+                            <p class="card-text">{{ post.description}}</p>
                         </div>
 
                     </div>
                 </div>
-                <div class="col-md-4">
+                {% endfor %}
+
+                {% comment %} <div class="col-md-4">
                     <div class="card">
                         <img src="{% static 'img/village.jpg' %}" alt="" class="card-img-top">
                         <div class="card-body">
@@ -60,7 +70,7 @@
                             <p class="card-text">Place Description Here...</p>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
         <!-- <button class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Modal</button> -->
@@ -76,13 +86,13 @@
                 <div class="modal-header">
                     <div class="modal-title">
                         <button class=" form-select-btn" id="login-form-btn">Login</button>
-                        <button class="form-select-btn" id="register-form-btn">Register</button>
+                        {% comment %} <button class="form-select-btn" id="register-form-btn">Register</button> {% endcomment %}
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                {% comment %} <div class="modal-body">
                     <div id="register-form" class="registerForm">
 
                         <form method = "POST" class = "form" action = "{% url 'neptourapp:navbar' %}>
@@ -110,7 +120,7 @@
                             </div>
                         </form>
 
-                    </div>
+                    </div> {% endcomment %}
 
                     <!-- Login Form -->
                     <div id="login-form" class="loginForm">

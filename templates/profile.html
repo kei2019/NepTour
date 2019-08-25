@@ -1,0 +1,48 @@
+{% extends 'navbar.html' %}
+[% load static %}
+{% block content %}
+<br>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>S.N</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Address</th>
+			<th>Contact</th>
+			{% comment %} <th>Image</th> {% endcomment %}
+            <th>Rating<th>
+
+			
+
+
+		</tr>
+		
+	</thead>
+	<tbody>
+			{% for element in profiles  %}
+		 		<tr>
+		 			<td>{{forloop.counter}}</td>
+		 			{% comment %} <td><a href="{% url 'jobapp:employerjobdetail' job.id %}">{{job.title}}({{job.jobapplication_set.count}} applications)</a></td> {% endcomment %}
+		 			<td>{{element.name}}</td>
+		 			<td>{{element.email}}</td>
+		 			<td>{{element.address}}</td>
+		 			<td>{{element.contact}}</td>
+		 			{% comment %} <td>{{element.pimage.url}}</td> {% endcomment %}
+                    <td>
+                       <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                       
+                     </td>
+
+
+
+		 		</tr>
+	 		{% endfor %}
+ 	</tbody>
+</table>
+{% endblock %}
