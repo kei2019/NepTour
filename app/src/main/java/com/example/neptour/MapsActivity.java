@@ -11,10 +11,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -45,6 +47,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private EditText searchPlace;
     private Button searchBtn;
+
+    private static final float DEFAULT_ZOOM = 8f;
 
 
     @Override
@@ -84,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     if (response.optJSONArray("locations") != null) {
                         JSONArray locations = response.getJSONArray("locations");
 
-                        Log.d(TAG,"LOcations: " + locations.length());
+                        Log.d(TAG,"Locations: " + locations.length());
 
                         for (int i = 0; i < locations.length(); i++) {
                             JSONObject location = locations.getJSONObject(i);
@@ -93,20 +97,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             String placeType = location.getString("place_type");
                             String placeName = location.getString("place_name");
 
-                            double latitude = location.getDouble("lat");
-                            double longitude = location.getDouble("lng");
-                            Log.d(TAG, "zone: " + zone);
+                            String lat = location.getString("lat");
+                            String lng = location.getString("lng");
 
-                            Log.d(TAG, "from firebase: " + location.toString());
+                            if (!lat.equals("") && !lng.equals("")) {
+                                double latitude = Double.parseDouble(location.getString("lat"));
+                                double longitude = Double.parseDouble(location.getString("lng"));
+                                Log.d(TAG, "zone: " + zone);
+
+                                Log.d(TAG, "location: " + location.toString());
 
 
-                            MarkerOptions markerOptions = new MarkerOptions();
-                            LatLng latLng;
-                            latLng = new LatLng(latitude, longitude);
-                            markerOptions.title(placeName);
-                            markerOptions.position(latLng);
-                            markerOptions.snippet(zone + "Place Type: " + placeType);
-                            mMap.addMarker(markerOptions);
+                                MarkerOptions markerOptions = new MarkerOptions();
+                                LatLng latLng;
+                                latLng = new LatLng(latitude, longitude);
+                                markerOptions.title(placeName);
+                                markerOptions.position(latLng);
+                                markerOptions.snippet(zone + "Place Type: " + placeType);
+                                mMap.addMarker(markerOptions);
+                            }
+
 
                             // next K,V pair consist of JSONObject photo_url
 //                            JSONObject photoUrl = book.getJSONObject("photo_url");
@@ -137,6 +147,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(locationRequest);
     }
 //    public static String GET(String url){
 //        InputStream inputStream = null;
@@ -195,8 +208,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMinZoomPreference(15.0f);
-        mMap.setMaxZoomPreference(20.0f);
+        LatLng nepal = new LatLng(27,85);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(nepal, DEFAULT_ZOOM));
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(27.7172, 85.3240);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Kathmandu"));
